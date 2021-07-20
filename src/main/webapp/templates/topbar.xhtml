@@ -1,0 +1,46 @@
+
+<ui:composition 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Automation dex</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+        <h:outputStylesheet name="bootstrap.min.css" library="css" />
+        <h:outputStylesheet name="general.css" library="css" />
+        <h:outputStylesheet name="custom.css" library="css" />
+
+    </h:head>
+
+    <h:form>
+        <nav class="navbar navbar-expand-md bg-primary navbar-dark margin-bottom-nav">         
+            <img src="#{resource['img/newlogo-horizontal.png']}" 
+                 style="height: 30px; width: 150px;">
+            </img>
+        </nav>
+    </h:form>
+
+
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+        <p:graphicImage value="/resources/img/Loading.gif" height="100" width="100"/>
+    </p:dialog>
+
+    <h:form>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <center>
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no cancel-btn" icon="pi pi-times" />
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes confirm-btn" icon="pi pi-check" />
+            </center>
+        </p:confirmDialog> 
+    </h:form>
+
+
+</ui:composition>

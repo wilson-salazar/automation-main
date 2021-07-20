@@ -1,0 +1,43 @@
+<ui:composition 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <div style="margin: 10px;">
+        
+        <div class="ui-g-12">
+            <label class="inputLabelLeft">Accept bid</label><br></br>
+            <p:inputText style="width: 30%; float: left;"
+                         value="#{ftlController.shipmentBid}"
+                         />
+        </div>
+        
+        <div class="ui-g-12">
+            <p:commandButton value="Play" 
+                             style="width: 120px; margin-right: 10px;" 
+                             actionListener="#{ftlController.acceptBid()}"
+                             update="text_area_cr"
+                             disabled="#{ftlController.abailableButtonBroker}"/>
+
+            <p:commandButton value="Clear" 
+                             style="width: 120px;" 
+                             actionListener="#{ftlController.clear()}"
+                             update="text_area_accb"
+                             ajax="false"/>
+            
+            <br></br>
+            <br></br>
+            <p:inputTextarea id="text_area_accb"
+                             rows="6" 
+                             cols="180" 
+                             disabled="true" 
+                             value="#{ftlController.messageCreateShip}" 
+                             />
+        </div>
+
+    </div>
+
+</ui:composition>

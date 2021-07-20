@@ -1,0 +1,107 @@
+<ui:composition 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <div style="margin: 10px;">
+
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Zipcode Origin</label><br></br>
+            <p:inputText style="width:100%;" 
+                         value="#{ftlController.cityCodeOrig}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Zipcode Destination</label><br></br>
+            <p:inputText style="width:100%;" 
+                         value="#{ftlController.cityCodeDest}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Broker Ref Id</label><br></br>
+            <p:inputText style="width:100%;" 
+                         value="#{ftlController.brokerReference}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Carrier Ref Id</label><br></br>
+            <p:inputText style="width:100%;" 
+                         value="#{ftlController.carrierReference}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Location Type</label><br></br>
+            <p:selectOneMenu value="#{ftlController.locationType}" 
+                             style="width: 100%">
+                <f:selectItem itemLabel="Commercial" itemValue="Commercial" />
+                <f:selectItem itemLabel="Military Base" itemValue="Military Base" />
+                <f:selectItem itemLabel="Airport" itemValue="Airport" />
+                <f:selectItem itemLabel="Port" itemValue="Port" />
+                <f:selectItem itemLabel="CFS" itemValue="CFS" />
+                <f:selectItem itemLabel="Residential" itemValue="Residential" />
+                <f:selectItem itemLabel="Yard" itemValue="Yard" />
+            </p:selectOneMenu>
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Max Rate</label><br></br>
+            <p:inputText style="width:100%;" 
+                         value="#{ftlController.maxrate}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Rate</label><br></br>
+            <p:inputText style="width:100%;" 
+                         value="#{ftlController.rate}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Equipment Type</label><br></br>
+            <p:selectOneMenu value="#{ftlController.equipmentType}" 
+                             style="width: 100%">
+                <f:selectItem itemLabel="Lowboy" itemValue="Lowboy" />
+                <f:selectItem itemLabel="Dry Van" itemValue="Dry Van" />
+                <f:selectItem itemLabel="Stepdeck" itemValue="Stepdeck" />
+                <f:selectItem itemLabel="Flatbed" itemValue="Flatbed" />
+                <f:selectItem itemLabel="Reefer" itemValue="Reefer" />
+                <f:selectItem itemLabel="Power-only" itemValue="Power-only" />
+                <f:selectItem itemLabel="Tanker" itemValue="Tanker" />
+            </p:selectOneMenu>
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Accesorials</label><br></br>
+            <p:selectBooleanCheckbox value="#{ftlController.accesorials}"/>               
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Negotiable</label><br></br>
+            <p:selectBooleanCheckbox value="#{ftlController.negotiable}"/>
+        </div>
+
+        <div class="ui-g-12">
+            <p:commandButton value="Play" 
+                             style="width: 120px; margin-right: 10px;" 
+                             actionListener="#{ftlController.createShipmentFtl()}"
+                             update="text_area_cr"
+                             disabled="#{ftlController.abailableButtonBroker}"/>
+
+            <p:commandButton value="Clear" 
+                             style="width: 120px;" 
+                             actionListener="#{ftlController.clear()}"
+                             update="text_area_cr"
+                             ajax="false"/>
+        </div>
+
+        <div class="ui-g-12">
+            <p:inputTextarea id="text_area_cr"
+                             rows="6" 
+                             cols="180" 
+                             disabled="true" 
+                             value="#{ftlController.messageCreateShip}" 
+                             />
+        </div>
+
+    </div>
+
+</ui:composition>

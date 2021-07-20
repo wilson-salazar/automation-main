@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" 
+             xmlns="http://java.sun.com/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    
+    <!-- Define Persistence Unit -->
+<!--    <persistence-unit name="tamarindPU" transaction-type="JTA">
+        <jta-data-source>jdbc/tamarind</jta-data-source>
+        <class>com.tamarind.entites.Pais</class>
+        <class>com.tamarind.entites.Destino</class>
+        <class>com.tamarind.entites.Cotizacion</class>
+        <class>com.tamarind.entites.Cliente</class>
+        <class>com.tamarind.entites.ClienteDestinoTarifa</class>
+        <class>com.tamarind.entites.CotizacionDetalle</class>
+        
+        <properties>
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+        </properties>
+        
+    </persistence-unit>-->
+</persistence>

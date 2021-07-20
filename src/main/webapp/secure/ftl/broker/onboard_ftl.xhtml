@@ -1,0 +1,89 @@
+<ui:composition 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div style="margin: 10px;">
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Shipment</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.shipmentOnboard}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Email Carrier</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.emailCarrierOnboard}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Mc Number</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.mcNumber}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Dot Number</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.dotNumber}"
+                         />
+        </div>
+
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Company Name</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.companyNameOnboard}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Full Name</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.fullNameOnboard}"
+                         />
+        </div>
+        <div class="ui-g-3">
+            <label class="inputLabelLeft">Phone</label><br></br>
+            <p:inputText style="width: 100%; float: left;" 
+                         value="#{ftlController.phoneOnboard}"
+                         />
+        </div>
+        <div  class="ui-g-3">
+            <label class="inputLabelLeft">Bid</label><br></br>
+            <p:selectBooleanButton value="#{ftlController.bitOnboard}" 
+                                   onLabel="Yes" 
+                                   offLabel="No"
+                                   onIcon="pi pi-check" 
+                                   offIcon="pi pi-times"
+                                   style="width:60px"/>
+        </div>
+
+
+        <div class="ui-g-12">
+            <p:commandButton value="Play" 
+                             style="width: 120px; margin-right: 10px;" 
+                             actionListener="#{ftlController.onBoard()}"
+                             update="text_area_on"
+                             disabled="#{ftlController.abailableButtonBroker}"/>
+            <p:commandButton value="Clear" 
+                             style="width: 120px;" 
+                             actionListener="#{ftlController.clear()}"
+                             update="text_area_in"
+                             ajax="false"/>
+            <p:commandButton style="width: 120px; margin-left: 10px;" 
+                             actionListener="#{ftlController.generateOnBoardInfo()}"
+                             ajax="false"
+                             value="Generate"/>
+            <br></br>
+            <br></br>
+            <p:inputTextarea id="text_area_on"
+                             rows="6" 
+                             cols="180" 
+                             disabled="true" 
+                             value="#{ftlController.messageOnboard}" 
+                             />
+        </div>
+    </div>
+
+</ui:composition>

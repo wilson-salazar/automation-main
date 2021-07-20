@@ -1,0 +1,20 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:po="http://primefaces.org/babylon">
+
+    <div class="layout-menu-container" style="top: 60px; width: 60px;">
+        <div class="nano layout-menu-wrapper" style="border-right: 0px; background-color: #00434A;">
+       <div class="nano-content menu-scroll-content">
+        <h:form id="menuform">
+          <ui:fragment >
+            <ui:include src="groupedMenu.xhtml" />
+          </ui:fragment>
+        </h:form>
+      </div>
+    </div>
+  </div>
+</ui:composition>

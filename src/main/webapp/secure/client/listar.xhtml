@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:include src="#{facesContext.externalContext.contextName}/templates/topbar.xhtml" /> 
+
+    <h:body>
+
+        <p:outputPanel class="ui-g-12">
+
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+
+            <h:form prependId="false" class="container_padding"
+                    onkeypress="if (event.keyCode === 13) {
+                                rcFiltrar();
+                                return false;
+                            }">
+
+                <div style="margin-bottom: 0.5%;">
+                    <div style="float: left;">
+                        <p:commandButton id="btn_crear" 
+                                         value="Create" 
+                                         icon="fa fa-plus"
+                                         process="@this"
+                                         global="false"
+                                         styleClass="btn-primary btn-md"
+                                         action="#{clientController.iniciarCrear()}"/>
+                    </div>
+                    <div style="float: right;">
+                        <p:inputText id="filtro" value="#{clientController.filtro}" maxlength="100"/>
+                        <p:commandButton id="btn_filtro"
+                                         styleClass="btn-search"
+                                         icon="fas fa-search" 
+                                         style="height: 35px;" 
+                                         actionListener="#{clientController.filtrar()}"
+                                         process="@this, filtro"
+                                         global="false"
+                                         update="client_list"/>
+                        <p:remoteCommand action="#{clientController.filtrar()}" 
+                                         process="@this, filtro"
+                                         global="false"
+                                         update="client_list"
+                                         name="rcFiltrar"/>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <p:dataTable var="item"
+                             value="#{clientController.lista}"
+                             resizableColumns="true"
+                             tableStyleClass="table-striped borderless ui-noborder"
+                             class="col-md-12 col-sm-12 col-xs-12"
+                             id="client_list"
+                             emptyMessage=""
+                             rowIndexVar="index"
+                             scrollWidth="95%"
+                             scrollable="true"
+                             rowKey="#{item[0]}" 
+                             sortBy="#{item[0]}"
+                             paginator="true"
+                             rows="#{clientController.pageSize}"
+                             paginatorPosition="bottom"
+                             first="#{clientController.firstIdx}"
+                             lazy="true"
+                             currentPageReportTemplate="Displaying {startRecord} - {endRecord} of {totalRecords}"
+                             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {RowsPerPageDropdown}">
+
+                    <p:ajax event="page" listener="#{clientController.onPage}" />
+
+                    <p:column headerText="Description" 
+                              style="width: 40%; text-align:center">
+                        <h:outputText class="negrita" value="#{item[1]}" />
+                    </p:column>
+                    <p:column headerText="Code" 
+                              style="width: 10%;text-align:center">
+                        <h:outputText value="#{item[2]}" />
+                    </p:column>
+                    <p:column headerText="Phone number" 
+                              style="width: 10%;text-align:center">
+                        <h:outputText value="#{item[4]}" />
+                    </p:column>
+                    <p:column headerText="Email" 
+                              style="width: 15%;text-align:center">
+                        <h:outputText value="#{item[5]}" />
+                    </p:column>
+                    <p:column headerText="Address" 
+                              style="width: 15%;text-align:center">
+                        <h:outputText value="#{item[6]}" />
+                    </p:column>
+                    <p:column headerText="Actions"
+                              style="width:10%;
+                              text-align:center">
+                        <p:commandLink  
+                            action="#{clientController.iniciarEditar(item[0])}"
+                            id="btnEditar"
+                            title="Edit"
+                            process="@this"
+                            global="false"
+                            partialSubmit="true">
+                            <i class="fas fa-edit icon-action color-primary"></i>
+                        </p:commandLink>
+
+                        <label class="separate-actions"></label>
+
+                        <p:commandLink
+                            action="#{clientController.activar(item[0])}"
+                            rendered="#{!item[3]}"
+                            id="btnActivar"
+                            title="Enable"
+                            process="@this"
+                            update="client_list"
+                            partialSubmit="true">
+                            <i class="fas fa-check icon-action color-success"></i>
+                            <p:confirm header="Confirmation" message="Are you sure to enable this client?" icon="pi pi-exclamation-triangle" />
+                        </p:commandLink>
+                        <p:commandLink  
+                            action="#{clientController.desactivar(item[0])}"
+                            rendered="#{item[3]}"
+                            id="btnDesactivar"
+                            title="Disable"
+                            process="@this"
+                            update="client_list"
+                            partialSubmit="true">
+                            <i class="fas fa-ban icon-action color-danger"></i>
+                            <p:confirm header="Confirmation" message="Are you sure to disable this client?" icon="pi pi-exclamation-triangle" />
+                        </p:commandLink>
+
+                        <label class="separate-actions"></label>
+                        <p:commandLink
+                            action="#{clientController.iniciarClienteDestinoTarifaList(item[0])}"
+                            rendered="#{item[3]}"
+                            id="btnTarifaDestino"
+                            title="Destination rate"
+                            process="@this"
+                            partialSubmit="true">
+                            <i class="fa fa-dollar icon-action color-sucess"></i>
+                        </p:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+                <div class="clearfix"></div>
+            </h:form> 
+        </p:outputPanel>
+
+        <ui:include src="#{facesContext.externalContext.contextName}/templates/footer.xhtml" /> 
+
+    </h:body>
+
+</html>

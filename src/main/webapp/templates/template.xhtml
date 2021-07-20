@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="en"
+      xmlns:ds="http://deltaspike.apache.org/jsf">
+
+    <h:head transient="true"> 
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title><ui:insert name="title">Centro de Empleo - Combarranquilla</ui:insert></title>
+
+        <!-- Cropper -->
+        <h:outputStylesheet name="cropper/dist/cropper.css" library="vendors" />
+        <ui:insert name="head"/>
+    </h:head>
+    <f:view transient="true">
+        <ds:windowId>
+            <h:body transient="true" >
+
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true">
+                    <h:form prependId="false">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-close" />
+                    </h:form>
+                </p:confirmDialog>
+
+
+                <div class="layout-wrapper #{guestPreferences.menuMode} #{guestPreferences.menuColor}">
+                    <ui:include src="./topbar.xhtml"></ui:include>
+                    <ui:include src="./menu.xhtml"></ui:include>
+
+                    <div class="layout-main">       
+
+                        <div class="layout-content" style="min-height:300px">
+                            <ds:disableClientWindow>
+                                <div class="ui-g" style="padding: 0px;">
+                                    <div class="route-bar" 
+                                         style="background-color:#ffffff;padding-top: 4px; width: 100%; margin-top: 0px;color: #00434A;">
+
+                                        <div class="route-bar-breadcrumb">
+                                            <div style="float: left;">
+                                                <a href="#{request.contextPath}/app/home"><i class="fa fa-home" style="padding-left: 17px;"></i></a>
+
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="ui-g-12">
+                                        <div class="ui-g-12 ui-md-12 ui-lg-12">
+                                            <div class="card card-w-title" style="border-color: white;">
+                                                hola
+                                                <ui:insert name="content"></ui:insert>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ds:disableClientWindow>
+                        </div>
+                    </div>
+
+                    <p:dialog modal="true" 
+                              widgetVar="statusDialog" 
+                              draggable="false" 
+                              closable="false" 
+                              responsive="true" 
+                              appendTo="@(body)"
+                              resizable="false"
+                              showHeader="false"
+                              styleClass="dialogCustomLoad layout-ajax-loader" 
+                              onShow="PF('statusDialog').initPosition();"
+                              >  
+                        <i class="fa fa-circle-o-notch fa-spin layout-ajax-loader-icon" aria-hidden="true"></i>
+
+                    </p:dialog>
+
+                    <p:ajaxStatus onstart="PF('statusDialog').initPosition();PF('statusDialog').show();" 
+                                  onsuccess="PF('statusDialog').hide();" 
+                                  onerror="PF('statusDialog').done();handleErrorRequest();"/>
+                    <div class="layout-mask"></div>
+
+                </div>
+
+                <h:outputStylesheet name="general.css" library="css" />
+                <!-- cropper -->
+                <h:outputScript name="cropper/dist/cropper.js" library="vendors" />
+                <!--script type="text/javascript" src="https://maps.google.com/maps/api/js?key=# {guestPreferences.gMapKey}"></script-->
+
+                <style>
+                    @media screen and (max-width: 900px){
+                        #breadUser{
+                            display: inline !important;
+                            width: 100% !important
+                        }
+                    }
+                </style>
+
+            </h:body>
+        </ds:windowId>
+    </f:view>
+</html>

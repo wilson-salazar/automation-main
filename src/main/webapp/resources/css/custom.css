@@ -1,0 +1,183 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/07/2020, 10:15:26 PM
+    Author     : Developer
+*/
+
+/*Color de fondo principal*/
+.bg-primary{
+    background-color: #BDBDBD !important;
+}
+
+
+/*Le quita el borde negro*/
+.navbar-toggler{
+    outline: 0 !important;
+}
+
+/*Color del borde del navbar toggle*/
+.navbar-dark .navbar-toggler {
+    border-color: white;
+}
+
+/*Color del texto del navbar*/
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+/*Esta clase no es de primefaces pero es el pading del nav */
+.margin-bottom-nav{
+    margin-bottom: 20px;
+}
+
+/* toogle de primafaces */
+.ui-toggleswitch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+}
+
+.ui-toggleswitch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.ui-toggleswitch-slider:before {
+    position: absolute;
+    content: "";
+    height: 23px;
+    width: 26px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.ui-toggleswitch.ui-widget.ui-toggleswitch-checked .ui-toggleswitch-slider{
+    background: #0088cc;
+}
+
+.ui-datatable-resizable{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ui-datatable-resizable th.ui-resizable-column {
+    background: #0088cc;
+    color: white;
+    font-weight: normal;
+    background-clip: border-box !important;
+}
+
+.ui-datatable thead th{
+    padding: 6px 10px !important;
+}
+
+.ui-datatable-scrollable-theadclone tr{
+    visibility: collapse;
+}
+
+.ui-paginator-current{
+    color: #7d7d7d;
+}
+
+.ui-button .ui-button-text {
+    line-height: inherit !important;
+}
+
+.ui-button.ui-state-focus{
+    border: 1px solid #0D5980 !important;
+    outline: 1px !important;
+}
+
+.ui-widget{
+    font-size: 14px !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+/* Cotenido de las tablas */
+.ui-widget-content{
+    color: #525252 !important;
+}
+
+/* Icono del mensaje de requerido */
+.ui-message-error-icon{
+    line-height: 1.5;
+    background: none !important;
+}
+
+.ui-message-error-icon::before{
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    content: "\f00d";
+}
+
+/*Titulo de confirmDialog*/
+.ui-dialog-title{
+    color: #525252 !important;
+}
+
+/*Cambiar icono del confirmDialog*/
+.ui-icon.ui-confirm-dialog-severity.pi.pi-exclamation-triangle{
+    width: 23px;
+    height: 20px;
+    font-size: 18px;
+    color: #0088cc;
+    margin-right: 0 !important;
+}
+.ui-icon.ui-confirm-dialog-severity.pi.pi-exclamation-triangle::before{
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    content: "\f06a";
+}
+
+.ui-corner-all{
+    outline: 0 !important;
+}
+
+.ui-state-default{
+    outline: 0 !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger{
+    width: 20px !important;
+}
+
+.ui-accordion .ui-accordion-header .ui-icon {
+    display: block;
+    font-size: 20px;
+    color: white;
+}
+
+.ui-accordion .ui-accordion-header {
+    background: #0088cc;
+    box-shadow: none;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.ui-accordion .ui-accordion-content.ui-widget-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+body .ui-accordion .ui-accordion-header>.ui-icon.ui-icon-triangle-1-e:before {
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    content: "\f06a";
+}

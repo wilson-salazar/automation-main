@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+         
+    <url-mapping>
+        <pattern value="/index" />
+        <view-id value="/index.xhtml" />
+    </url-mapping>
+    
+    <url-mapping>
+        <pattern value="/home" />
+        <view-id value="/secure/home.xhtml" />
+    </url-mapping>
+    
+    <url-mapping>
+        <pattern value="/ftl" />
+        <view-id value="/secure/ftl/listar.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/destination/create" />
+        <view-id value="/secure/destination/crear.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/destination/update" />
+        <view-id value="/secure/destination/editar.xhtml" />
+    </url-mapping>
+    
+    <url-mapping>
+        <pattern value="/client" />
+        <view-id value="/secure/client/listar.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/client/create" />
+        <view-id value="/secure/client/crear.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/client/update" />
+        <view-id value="/secure/client/editar.xhtml" />
+    </url-mapping>
+    <url-mapping>
+        <pattern value="/client/destinationRate" />
+        <view-id value="/secure/client/destino_tarifa.xhtml" />
+    </url-mapping>
+    
+    <url-mapping>
+        <pattern value="/quotation" />
+        <view-id value="/secure/quotation/listar.xhtml" />
+    </url-mapping>
+    
+</pretty-config>

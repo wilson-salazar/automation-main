@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:include src="#{facesContext.externalContext.contextName}/templates/topbar.xhtml" /> 
+
+    <h:body>
+
+        <p:outputPanel class="ui-g-12">
+
+            <p:messages id="messages" showDetail="true" closable="true" severity="info">
+                <p:autoUpdate />
+            </p:messages>
+
+            <h:form id="form" 
+                    prependId="false" 
+                    class="container_padding"
+                    >
+
+                <p:tabView>
+                    <p:tab title="Broker">
+                        <p:panel header="General info">
+                            <div class="ui-g-4">
+                                <label class="inputLabelLeft">Environment</label><br></br>
+                                <p:selectOneMenu id="environment_select" 
+                                                 value="#{ftlController.environment}" 
+                                                 style="width: 100%">
+                                    <f:selectItem itemLabel="Development" itemValue="https://dev.dexfreight.io/#/" />
+                                    <f:selectItem itemLabel="Production" itemValue="https://app.dexfreight.io/#/" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-4">
+                                <label class="inputLabelLeft">Browser</label><br></br>
+                                <p:selectOneMenu value="#{ftlController.browser}" 
+                                                 style="width: 100%">
+                                    <f:selectItem itemLabel="Chrome" itemValue="Chrome" />
+                                    <f:selectItem itemLabel="Mozilla" itemValue="Mozilla" />
+                                    <f:selectItem itemLabel="Edge" itemValue="Edge" />
+                                    <f:selectItem itemLabel="Internet Explorer" itemValue="IE" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-4">
+                                <label class="inputLabelLeft">Time (ms)</label><br></br>
+                                <p:spinner id="time" value="#{ftlController.lowTime}" style="width: 50%;"/>
+                            </div>
+
+                            <div class="ui-g-6">
+                                <label class="inputLabelLeft">User</label><br></br>
+                                <p:inputText style="width:100%;" 
+                                             id="user" 
+                                             value="#{ftlController.user}"
+                                             />
+
+                            </div>
+                            <div class="ui-g-6">
+                                <label class="inputLabelLeft">Password</label><br></br>
+                                <p:inputText style="width: 100%" 
+                                             id="pass" 
+                                             value="#{ftlController.password}"/>
+
+                            </div>
+                            <div class="ui-g-12">
+                                <p:commandButton value="Save"
+                                                 action="#{ftlController.saveInfoBroker()}"
+                                                 update="form"
+                                                 ajax="false"
+                                                 style="width: 120px;"/>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </p:panel>
+                        <br></br>
+
+                        <p:accordionPanel>
+                            <p:tab title="Create Shipment Ftl">
+                                <ui:include src="#{facesContext.externalContext.contextName}/secure/ftl/broker/create_shipment_ftl.xhtml" />
+                            </p:tab>
+                            <p:tab title="Invite Ftl">
+                                <ui:include src="#{facesContext.externalContext.contextName}/secure/ftl/broker/invite_ftl.xhtml" />
+                            </p:tab>
+                            <p:tab title="Onboard Ftl">
+                                <ui:include src="#{facesContext.externalContext.contextName}/secure/ftl/broker/onboard_ftl.xhtml" />
+                            </p:tab>
+                            <p:tab title="Accept bid">
+                                <ui:include src="#{facesContext.externalContext.contextName}/secure/ftl/broker/accept_bid.xhtml" />
+                            </p:tab>
+                        </p:accordionPanel>
+                    </p:tab>
+
+                    <p:tab title="Carrier">
+                        <p:panel header="General info">
+                            <div class="ui-g-4">
+                                <label class="inputLabelLeft">Environment</label><br></br>
+                                <p:selectOneMenu value="#{ftlCarrierController.environment}" 
+                                                 style="width: 100%">
+                                    <f:selectItem itemLabel="Development" itemValue="https://dev.dexfreight.io/#/" />
+                                    <f:selectItem itemLabel="Production" itemValue="https://app.dexfreight.io/#/" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-4">
+                                <label class="inputLabelLeft">Browser</label><br></br>
+                                <p:selectOneMenu value="#{ftlCarrierController.browser}" 
+                                                 style="width: 100%">
+                                    <f:selectItem itemLabel="Chrome" itemValue="Chrome" />
+                                    <f:selectItem itemLabel="Mozilla" itemValue="Mozilla" />
+                                    <f:selectItem itemLabel="Edge" itemValue="Edge" />
+                                    <f:selectItem itemLabel="Internet Explorer" itemValue="IE" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-g-4">
+                                <label class="inputLabelLeft">Time (ms)</label><br></br>
+                                <p:spinner id="timeCarrier" value="#{ftlCarrierController.lowTime}" style="width: 50%;"/>
+                            </div>
+
+                            <div class="ui-g-6">
+                                <label class="inputLabelLeft">User</label><br></br>
+                                <p:inputText style="width:100%;" 
+                                             id="userCarrier"
+                                             value="#{ftlCarrierController.user}"
+                                             />
+
+                            </div>
+                            <div class="ui-g-6">
+                                <label class="inputLabelLeft">Password</label><br></br>
+                                <p:inputText style="width: 100%" 
+                                             id="passCarrier"
+                                             value="#{ftlCarrierController.password}"/>
+
+                            </div>
+                            <div class="ui-g-12">
+                                <p:commandButton value="Save"
+                                                 action="#{ftlCarrierController.saveInfoCarrier()}"
+                                                 update="form"
+                                                 ajax="false"
+                                                 style="width: 120px;"/>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </p:panel>
+                        <br></br><!-- comment -->
+
+                        <p:accordionPanel>
+                            <p:tab title="Bid">
+                                <ui:include src="#{facesContext.externalContext.contextName}/secure/ftl/carrier/accept_shipment_ftl.xhtml" />
+                            </p:tab>
+                            <p:tab title="Create Driver">
+                                <div style="margin: 10px;">
+                                    <p:commandButton value="Play" 
+                                                     style="width: 120px;" 
+                                                     actionListener="#{ftlCarrierController.createDriver()}"
+                                                     update="text_area_crdr"
+                                                     />
+                                    <p:commandButton value="Clear" 
+                                                     style="width: 120px;" 
+                                                     actionListener="#{ftlCarrierController.clear()}"
+                                                     update="text_area_acpsh"
+                                                     ajax="false"/>
+                                    <br></br>
+                                    <br></br>
+                                    <p:inputTextarea id="text_area_crdr"
+                                                     rows="6" 
+                                                     cols="180" 
+                                                     disabled="true" 
+                                                     value="#{ftlCarrierController.messageCrearDriver}" 
+                                                     />
+                                </div>
+                            </p:tab>
+
+                        </p:accordionPanel>
+                    </p:tab>
+                </p:tabView>
+                <br></br>
+
+                <div class="clearfix"></div>
+            </h:form>
+
+            
+            
+        </p:outputPanel>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:include src="#{facesContext.externalContext.contextName}/templates/topbar.xhtml" /> 
+
+    <h:body>
+
+        <p:outputPanel class="ui-g-12">
+
+            <p:messages id="messages" showDetail="true" closable="true" severity="info">
+                <p:autoUpdate />
+            </p:messages>
+
+            <h:form enctype="multipart/form-data">        
+                <p:fileUpload value="#{testContoller.file}" 
+                              mode="simple" 
+                              skinSimple="true"/>
+                <br />
+                <p:commandButton value="Submit" 
+                                 ajax="false" 
+                                 action="#{testContoller.upload()}" 
+                                 />
+            </h:form>
+
+            <h:form prependId="false" 
+                    class="container_form" 
+                    id="form"
+                    onkeypress="if (event.keyCode === 13) {
+                                rcFiltrar();
+                                return false;
+                            }">
+                <center>
+                    <div class="ui-g-12">
+                        <h3>Destination rate</h3>
+                    </div> 
+
+                    <div class="ui-g-12">
+                        <img src="#{resource['img/client.png']}" 
+                             style="height: 70px; width: 66px; float: left;">
+                        </img>
+                    </div>
+                    <div class="ui-g-12" style="background-color: #E1F5FE; margin-bottom: 5px;">
+                        <h6 class="text-left">#{clientController.clienteDestinoTarifa.nombre} - #{clientController.clienteDestinoTarifa.codigo}</h6>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12 ui-lg-12 no-padding">
+                        <p:accordionPanel activeIndex="-1" id="panel_accordion">
+                            <p:tab title="Destinations" id="tab_1">
+                                <div class="ui-g-12">
+                                    <div style="float: right;">
+                                        <p:inputText id="filtro" value="#{clientController.filtroDestinos}" 
+                                                     maxlength="100" placeholder="Search"/>
+                                        <p:commandButton id="btn_filtro"
+                                                         styleClass="btn-search"
+                                                         icon="fas fa-search" 
+                                                         style="height: 35px;" 
+                                                         actionListener="#{clientController.filtrarDestinos()}"
+                                                         process="@this, filtro"
+                                                         global="false"
+                                                         update="destino_"/>
+                                        <p:remoteCommand action="#{clientController.filtrarDestinos()}" 
+                                                         process="@this, filtro"
+                                                         global="false"
+                                                         update="destino_"
+                                                         name="rcFiltrar"/>
+                                    </div> 
+
+                                </div>
+                                <br/>
+                                <div class="clearfix"></div>
+
+                                <p:dataTable id="destino_" 
+                                             var="destino"
+                                             paginator="true"
+                                             paginatorPosition="bottom"
+                                             rows="10"
+                                             paginatorAlwaysVisible="#{clientController.filteredDestinos.size() > 10}"
+                                             value="#{clientController.filteredDestinos}" 
+                                             selection="#{clientController.selectedDestinos}" 
+                                             rowKey="#{destino.id}"
+                                             style="margin-bottom:0"
+                                             scrollable="true"
+                                             scrollHeight="500">
+
+                                    <p:column selectionMode="multiple" style="width:5%; text-align: center"/>
+
+                                    <p:column headerText="Destination" styleClass="text-center"
+                                              style="width: 40%;">
+                                        <h:outputText value="#{destino.descripcion}" />
+                                    </p:column>
+                                    <p:column headerText="Code" styleClass="text-center"
+                                              style="width: 40%;">
+                                        <h:outputText value="#{destino.codigo}" />
+                                    </p:column>
+
+                                </p:dataTable>
+
+                                <div class="ui-g-12" style="margin-top: 2%">
+                                    <p:commandButton value="Add" 
+                                                     update="form"
+                                                     styleClass="btn-primary btn-lg"
+                                                     action="#{clientController.llenarListaClienteDestino()}"
+                                                     />
+                                </div>
+                            </p:tab>
+                        </p:accordionPanel>
+
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12 ui-lg-12 no-padding min-margin-top">
+                        <p:dataTable id="destino_tarifa_" 
+                                     var="destarifa"
+                                     rowIndexVar="index"
+                                     value="#{clientController.clienteDestinoTarifa.clienteDestinoTarifaList}" 
+                                     editable="true" 
+                                     editMode="cell" 
+                                     >
+
+                            <p:column headerText="Destination" styleClass="text-center">
+                                <h:outputText value="#{destarifa.destino.descripcion}" />
+                            </p:column>
+                            <p:column headerText="Code" styleClass="text-center">
+                                <h:outputText value="#{destarifa.destino.codigo}" />
+                            </p:column>
+                            <p:column headerText="Rate" styleClass="text-center">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{destarifa.tarifa}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{destarifa.tarifa}" style="width:96%"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Billing Clycle" styleClass="text-center">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{destarifa.cicloFactura}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{destarifa.cicloFactura}" style="width:96%"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Actions" styleClass="text-center">
+                                <p:commandLink title="Remove" 
+                                               actionListener="#{clientController.removeDestination(index)}"
+                                               process="@this"
+                                               update="destino_tarifa_, panel_accordion">
+                                    <i class="fa fa-remove"></i>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+
+                    <div class="ui-g-12" style="margin-top: 2%">
+                        <p:commandButton value="Save" 
+                                         update="form"
+                                         styleClass="btn-primary btn-lg"
+                                         action="#{clientController.actualizarClienteDestinoTarifa()}"
+                                         />
+                    </div>
+
+                    <div class="clearfix"></div>
+                </center>
+            </h:form> 
+
+        </p:outputPanel>
+
+        <ui:include src="#{facesContext.externalContext.contextName}/templates/footer.xhtml" /> 
+
+    </h:body>
+
+
+</html>

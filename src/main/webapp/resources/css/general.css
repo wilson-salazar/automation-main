@@ -1,0 +1,139 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/07/2020, 10:17:38 PM
+    Author     : Developer
+*/
+body{
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    background: #f9f9f9 !important;
+    color: #525252;
+}
+
+.btn-principal{
+    background: #6200EE;
+    color: white;
+}
+
+.btn-principal:hover{
+    background: white;
+    color: #6200EE;
+}
+
+.btn-principal:focus{
+    outline: 0;
+}
+
+.btn-option{
+    background: #c0d6ee; 
+    color: #512DA8;
+    width: 300px; 
+    height: 200px;
+    cursor: pointer;
+}
+
+.btn-option:hover{
+    background: #a0c1e6;
+    color: #512DA8;
+    /* border: 1px solid #512DA8;*/
+}
+
+.btn-primary{
+    background: #0088cc !important; 
+    color: white !important;
+}
+
+.confirm-btn{
+    background: #4fc558 !important;
+    color: white !important;
+}
+
+.cancel-btn{
+    background: #0088cc !important;
+    color: white !important;
+}
+
+.btn-secundary{
+    background: #f39c12 !important;
+    color: white !important;
+}
+
+.float-left{
+    float: left;
+}
+
+.inputLabelLeft{
+    width: 100%; 
+    text-align: left;
+}
+
+.btn-lg{
+    min-width: 120px;
+    height: 40px;
+}
+
+.btn-md{
+    width: 100px;
+    height: 30px;
+}
+
+.container_padding{
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.container_form{
+    margin: 6% !important;
+    padding: 2% !important;
+    box-shadow: 0px 1px 20px #b3b3b3;
+    border-radius: 10px;
+    background: white;
+}
+
+.color-primary{
+    color: #0088cc;
+}
+
+.color-danger{
+    color: #ff0000b0;
+}
+
+.color-success{
+    color: #4fc558;
+}
+
+.separate-actions{
+    margin-right: 1%;
+}
+
+.icon-action{
+    font-size: 16px;
+}
+
+.btn-search{
+    height: 31px !important;
+}
+
+/*Este es el mensaje en los campos requeridos de formularios */
+.mensajeRequerido{
+    width: 150px !important; 
+    float: left !important; 
+    margin-top: 5px !important;
+}
+
+.maxWidth{
+    width: 100% !important;
+}
+
+.no-padding{
+    padding: 0 !important;
+}
+
+.min-margin-top{
+    margin-top: 20px;
+}

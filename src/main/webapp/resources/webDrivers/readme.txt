@@ -1,0 +1,1 @@
+Estas carpetas son solo para tener los webDrivers a en el proyecto, la lectura la hace desde la carpeta del servidor (payara para este caso) 
